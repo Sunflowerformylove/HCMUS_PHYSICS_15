@@ -1,0 +1,46 @@
+[
+    {
+        "id": "236ce50240cdb48c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2644459b3f67fa27",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f0482ba24e18794d",
+        "type": "uibuilder",
+        "z": "236ce50240cdb48c",
+        "name": "",
+        "topic": "",
+        "url": "Sample",
+        "okToGo": true,
+        "fwdInMessages": false,
+        "allowScripts": false,
+        "allowStyles": false,
+        "copyIndex": true,
+        "templateFolder": "blank",
+        "extTemplate": "",
+        "showfolder": false,
+        "reload": false,
+        "sourceFolder": "src",
+        "deployedVersion": "6.8.2",
+        "showMsgUib": false,
+        "title": "",
+        "descr": "",
+        "x": 690,
+        "y": 180,
+        "wires": [
+            [],
+            []
+        ]
+    }
+]

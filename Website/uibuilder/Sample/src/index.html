@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../uibuilder/images/node-blue.ico">
+  <title>Login Page - Node-RED uibuilder</title>
+  <meta name="description" content="Node-RED uibuilder - Login Page">
+  <link type="text/css" rel="stylesheet" href="./index.css" media="all">
+  <link type="text/css" rel="stylesheet" href="./components/Login.css" media="all">
+  <link type="text/css" rel="stylesheet" href="./components/SignUp.css" media="all">
+  <link type="text/css" rel="stylesheet" href="./components/Vuon.css" media="all">
+  <link type="text/css" rel="stylesheet" href="./components/About.css" media="all">
+  <link type="text/css" rel="stylesheet" href="./components/Phanbon.css" media="all">
+  <link type="text/css" rel="stylesheet" href="./components/Chucnang.css" media="all">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script defer src="../uibuilder/uibuilder.iife.min.js"></script>
+  <script defer src="./index.js"></script>
+  <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body class="uib">
+  <div id="app">
+    <component :is="currentComponent"></component>
+  </div>
+</body>
+</html>
