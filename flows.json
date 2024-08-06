@@ -1,0 +1,681 @@
+[
+    {
+        "id": "a1e4e922bcf147a4",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "990e756ac06b7596",
+        "type": "inject",
+        "z": "a1e4e922bcf147a4",
+        "name": "Start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "886329ad738c4bc6"
+            ]
+        ]
+    },
+    {
+        "id": "886329ad738c4bc6",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "Initial UI",
+        "func": "msg.payload = {group: {\n    hide: [\"Dashboard_SignUp\"],\n    show: [\"Dashboard_SignIn\"]\n}};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "53ff0d3e68d0f7a4"
+            ]
+        ]
+    },
+    {
+        "id": "53ff0d3e68d0f7a4",
+        "type": "ui_ui_control",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "events": "all",
+        "x": 520,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25202cc49fd31e85",
+        "type": "ui_form",
+        "z": "a1e4e922bcf147a4",
+        "name": "SignIn",
+        "label": "",
+        "group": "95f13ee682ea304b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "ID",
+                "value": "username",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "username": "",
+            "password": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "200ac7ce3b99aca6",
+                "61233a0a61a78b8f"
+            ]
+        ]
+    },
+    {
+        "id": "200ac7ce3b99aca6",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "check_info",
+        "func": "// Node-RED function node: check_info\n// Default username and password\nconst defaultUsername = 'atwo';\nconst defaultPassword = '123';\n\n// Extract username and password from the incoming message\nconst username = msg.payload.username;\nconst password = msg.payload.password;\n\n// Check if the credentials match\nif (username === defaultUsername && password === defaultPassword) {\n    msg.payload = 1;\n} else {\n    msg.payload = 0;\n}\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "1c60a6be8ce783b4"
+            ]
+        ]
+    },
+    {
+        "id": "1c60a6be8ce783b4",
+        "type": "switch",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "8b47147387bae393"
+            ],
+            [
+                "935d3c0bc541421c"
+            ]
+        ]
+    },
+    {
+        "id": "8b47147387bae393",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "= 0: Fail",
+        "func": "msg.payload = \"Invalid username or password, please try again.\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 240,
+        "wires": [
+            [
+                "402e6e8d6f2eef02"
+            ]
+        ]
+    },
+    {
+        "id": "935d3c0bc541421c",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "=1: Success",
+        "func": "msg.payload = { group: {\n    show : [\"Dashboard_SensorData\", \n            \"Dashboard_History\", \n            \"Dashboard_Logout\", \n            \"Dashboard_SmartSwitch\",\n            \"Dashboard_Admin\"],\n    hide : [\"Dashboard_SignIn\"]\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "fda01bbc90539cd2"
+            ]
+        ]
+    },
+    {
+        "id": "fda01bbc90539cd2",
+        "type": "ui_ui_control",
+        "z": "a1e4e922bcf147a4",
+        "name": "Go to function group",
+        "events": "all",
+        "x": 860,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "402e6e8d6f2eef02",
+        "type": "ui_toast",
+        "z": "a1e4e922bcf147a4",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Authentication Failure Dialog",
+        "x": 900,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61233a0a61a78b8f",
+        "type": "debug",
+        "z": "a1e4e922bcf147a4",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "72ade83d4438650a",
+        "type": "ui_button",
+        "z": "a1e4e922bcf147a4",
+        "name": "Sign Up",
+        "group": "95f13ee682ea304b",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Sign Up",
+        "tooltip": "",
+        "color": "#A6BBCF",
+        "bgcolor": "#FFFFFF",
+        "className": "",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"Dashboard_SignIn\"],\"show\":[\"Dashboard_SignUp\"]}}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "869385885c5721c5"
+            ]
+        ]
+    },
+    {
+        "id": "869385885c5721c5",
+        "type": "ui_ui_control",
+        "z": "a1e4e922bcf147a4",
+        "name": "Go to SignUp",
+        "events": "all",
+        "x": 320,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "049414ada7ba4c07",
+        "type": "ui_form",
+        "z": "a1e4e922bcf147a4",
+        "name": "SignUp",
+        "label": "",
+        "group": "523c0f67870ab58f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "ID",
+                "value": "username",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Re-enter Password",
+                "value": "repassword",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "username": "",
+            "password": "",
+            "repassword": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 140,
+        "y": 540,
+        "wires": [
+            [
+                "ac49ae61bf32dfe6",
+                "70839c12c0fb95f3"
+            ]
+        ]
+    },
+    {
+        "id": "ac49ae61bf32dfe6",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "check_info",
+        "func": "// Node-RED function node: check_info\n// Default username and password\nconst defaultUsername = 'atwo';\nconst defaultPassword = '123';\n\n// Extract username and password from the incoming message\nconst username = msg.payload.username;\nconst password = msg.payload.password;\nconst repassword = msg.payload.repassword;\n\n// Check if the credentials match\nif (username === defaultUsername && password === defaultPassword && repassword === password) {\n    msg.payload = 1;\n} else {\n    msg.payload = 0;\n}\n\n// Pass the message to the next node\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 540,
+        "wires": [
+            [
+                "c02ffd630fcff4bf"
+            ]
+        ]
+    },
+    {
+        "id": "c02ffd630fcff4bf",
+        "type": "switch",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 540,
+        "wires": [
+            [
+                "c843bb5d1572d633"
+            ],
+            [
+                "d58b825469bd5e7a"
+            ]
+        ]
+    },
+    {
+        "id": "c843bb5d1572d633",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "= 0: Fail",
+        "func": "msg.payload = \"Invalid username or password, please try again.\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 520,
+        "wires": [
+            [
+                "6262c2c69fa4c09d"
+            ]
+        ]
+    },
+    {
+        "id": "d58b825469bd5e7a",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "=1: Success",
+        "func": "msg.payload = { group: {\n    show : [\"Dashboard_SensorData\", \n            \"Dashboard_History\", \n            \"Dashboard_Logout\", \n            \"Dashboard_SmartSwitch\",\n            \"Dashboard_Admin\"],\n    hide : [\"Dashboard_SignUp\"]\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 560,
+        "wires": [
+            [
+                "230861bbc0dc340b"
+            ]
+        ]
+    },
+    {
+        "id": "230861bbc0dc340b",
+        "type": "ui_ui_control",
+        "z": "a1e4e922bcf147a4",
+        "name": "Go to function group",
+        "events": "all",
+        "x": 860,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6262c2c69fa4c09d",
+        "type": "ui_toast",
+        "z": "a1e4e922bcf147a4",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Authentication Failure Dialog",
+        "x": 900,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70839c12c0fb95f3",
+        "type": "debug",
+        "z": "a1e4e922bcf147a4",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "880bb394151fe87b",
+        "type": "ui_text",
+        "z": "a1e4e922bcf147a4",
+        "group": "95f13ee682ea304b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "SIGN IN",
+        "format": "",
+        "layout": "row-center",
+        "className": "",
+        "style": true,
+        "font": "Century Gothic,CenturyGothic,AppleGothic,sans-serif",
+        "fontSize": "22",
+        "color": "#000000",
+        "x": 140,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "fa91137e0a213a87",
+        "type": "ui_button",
+        "z": "a1e4e922bcf147a4",
+        "name": "Sign In",
+        "group": "523c0f67870ab58f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Sign In",
+        "tooltip": "",
+        "color": "#A6BBCF",
+        "bgcolor": "#FFFFFF",
+        "className": "",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"Dashboard_SignUp\"],\"show\":[\"Dashboard_SignIn\"]}}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 620,
+        "wires": [
+            [
+                "e88f23c43fb3cb2d"
+            ]
+        ]
+    },
+    {
+        "id": "e88f23c43fb3cb2d",
+        "type": "ui_ui_control",
+        "z": "a1e4e922bcf147a4",
+        "name": "Go to SignIn",
+        "events": "all",
+        "x": 310,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8f8f2cd586bc2a8",
+        "type": "ui_text",
+        "z": "a1e4e922bcf147a4",
+        "group": "523c0f67870ab58f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "SIGN UP",
+        "format": "",
+        "layout": "row-center",
+        "className": "",
+        "style": true,
+        "font": "Century Gothic,CenturyGothic,AppleGothic,sans-serif",
+        "fontSize": "22",
+        "color": "#000000",
+        "x": 140,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "78c3413708a31322",
+        "type": "comment",
+        "z": "a1e4e922bcf147a4",
+        "name": "Sign-Up Section",
+        "info": "",
+        "x": 160,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "fa6f162e27d43f12",
+        "type": "comment",
+        "z": "a1e4e922bcf147a4",
+        "name": "Sign-In Section",
+        "info": "",
+        "x": 160,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "32fd924e27d20112",
+        "type": "ui_template",
+        "z": "a1e4e922bcf147a4",
+        "group": "412e7029b72dd724",
+        "name": "Aboutus",
+        "order": 0,
+        "width": "18",
+        "height": "12",
+        "format": "<div style=\"text-align: center; font-family: Arial, sans-serif;\">\n    <h4 style=\"font-style: italic; color: #3366cc;\">Môn học: Vật lý cho công nghệ thông tin</h4>\n    <h1 style=\"color: #3366cc;\">Bộ công cụ tự động hóa quá trình<br>chăm sóc vườn tích hợp sản xuất phân bón</h1>\n    <br>\n    <div style=\"text-align: center;\">\n        <h3>Thành viên:</h3>\n        <p>Đỗ Đình Hải – 22127095<br>Bế Lã Anh Thư – 22127402</p>\n    </div>\n    <br>\n    <h3>Lớp: 22CLC02</h3>\n    <br>\n    <div style=\"text-align: center;\">\n        <h3>Giảng viên:</h3>\n        <p>Cao Xuân Nam<br>Đặng Hoài Thương</p>\n    </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 140,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ccc3e3fb6e25d9fd",
+        "type": "comment",
+        "z": "a1e4e922bcf147a4",
+        "name": "Tab about us",
+        "info": "",
+        "x": 150,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "95f13ee682ea304b",
+        "type": "ui_group",
+        "name": "SignIn",
+        "tab": "e45692bb3249486c",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "523c0f67870ab58f",
+        "type": "ui_group",
+        "name": "SignUp",
+        "tab": "e45692bb3249486c",
+        "order": 3,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "412e7029b72dd724",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "ffc5cccd0966e57a",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e45692bb3249486c",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ffc5cccd0966e57a",
+        "type": "ui_tab",
+        "name": "About us",
+        "icon": "",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    }
+]
