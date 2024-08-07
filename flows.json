@@ -106,31 +106,11 @@
         "splitLayout": "",
         "className": "",
         "x": 130,
-        "y": 260,
+        "y": 280,
         "wires": [
             [
-                "200ac7ce3b99aca6",
-                "61233a0a61a78b8f"
-            ]
-        ]
-    },
-    {
-        "id": "200ac7ce3b99aca6",
-        "type": "function",
-        "z": "a1e4e922bcf147a4",
-        "name": "check_info",
-        "func": "// Node-RED function node: check_info\n// Default username and password\nconst defaultUsername = 'atwo';\nconst defaultPassword = '123';\n\n// Extract username and password from the incoming message\nconst username = msg.payload.username;\nconst password = msg.payload.password;\n\n// Check if the credentials match\nif (username === defaultUsername && password === defaultPassword) {\n    msg.payload = 1;\n} else {\n    msg.payload = 0;\n}\n\n// Pass the message to the next node\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 350,
-        "y": 260,
-        "wires": [
-            [
-                "1c60a6be8ce783b4"
+                "61233a0a61a78b8f",
+                "2a155f07549cf735"
             ]
         ]
     },
@@ -156,8 +136,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 510,
-        "y": 260,
+        "x": 990,
+        "y": 280,
         "wires": [
             [
                 "8b47147387bae393"
@@ -179,7 +159,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
+        "x": 1160,
         "y": 240,
         "wires": [
             [
@@ -199,8 +179,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 280,
+        "x": 1170,
+        "y": 340,
         "wires": [
             [
                 "fda01bbc90539cd2"
@@ -213,8 +193,8 @@
         "z": "a1e4e922bcf147a4",
         "name": "Go to function group",
         "events": "all",
-        "x": 860,
-        "y": 280,
+        "x": 1440,
+        "y": 340,
         "wires": [
             []
         ]
@@ -234,7 +214,7 @@
         "className": "",
         "topic": "",
         "name": "Authentication Failure Dialog",
-        "x": 900,
+        "x": 1420,
         "y": 240,
         "wires": [
             []
@@ -321,19 +301,11 @@
                 "type": "password",
                 "required": true,
                 "rows": null
-            },
-            {
-                "label": "Re-enter Password",
-                "value": "repassword",
-                "type": "password",
-                "required": true,
-                "rows": null
             }
         ],
         "formValue": {
             "username": "",
-            "password": "",
-            "repassword": ""
+            "password": ""
         },
         "payload": "",
         "submit": "submit",
@@ -346,153 +318,9 @@
         "y": 540,
         "wires": [
             [
-                "ac49ae61bf32dfe6",
-                "70839c12c0fb95f3"
+                "3f1756f15584103b"
             ]
         ]
-    },
-    {
-        "id": "ac49ae61bf32dfe6",
-        "type": "function",
-        "z": "a1e4e922bcf147a4",
-        "name": "check_info",
-        "func": "// Node-RED function node: check_info\n// Default username and password\nconst defaultUsername = 'atwo';\nconst defaultPassword = '123';\n\n// Extract username and password from the incoming message\nconst username = msg.payload.username;\nconst password = msg.payload.password;\nconst repassword = msg.payload.repassword;\n\n// Check if the credentials match\nif (username === defaultUsername && password === defaultPassword && repassword === password) {\n    msg.payload = 1;\n} else {\n    msg.payload = 0;\n}\n\n// Pass the message to the next node\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 350,
-        "y": 540,
-        "wires": [
-            [
-                "c02ffd630fcff4bf"
-            ]
-        ]
-    },
-    {
-        "id": "c02ffd630fcff4bf",
-        "type": "switch",
-        "z": "a1e4e922bcf147a4",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 510,
-        "y": 540,
-        "wires": [
-            [
-                "c843bb5d1572d633"
-            ],
-            [
-                "d58b825469bd5e7a"
-            ]
-        ]
-    },
-    {
-        "id": "c843bb5d1572d633",
-        "type": "function",
-        "z": "a1e4e922bcf147a4",
-        "name": "= 0: Fail",
-        "func": "msg.payload = \"Invalid username or password, please try again.\";\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 660,
-        "y": 520,
-        "wires": [
-            [
-                "6262c2c69fa4c09d"
-            ]
-        ]
-    },
-    {
-        "id": "d58b825469bd5e7a",
-        "type": "function",
-        "z": "a1e4e922bcf147a4",
-        "name": "=1: Success",
-        "func": "msg.payload = { group: {\n    show : [\"Dashboard_SensorData\", \n            \"Dashboard_History\", \n            \"Dashboard_Logout\", \n            \"Dashboard_SmartSwitch\",\n            \"Dashboard_Admin\"],\n    hide : [\"Dashboard_SignUp\"]\n    }\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
-        "y": 560,
-        "wires": [
-            [
-                "230861bbc0dc340b"
-            ]
-        ]
-    },
-    {
-        "id": "230861bbc0dc340b",
-        "type": "ui_ui_control",
-        "z": "a1e4e922bcf147a4",
-        "name": "Go to function group",
-        "events": "all",
-        "x": 860,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6262c2c69fa4c09d",
-        "type": "ui_toast",
-        "z": "a1e4e922bcf147a4",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "Authentication Failure Dialog",
-        "x": 900,
-        "y": 520,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "70839c12c0fb95f3",
-        "type": "debug",
-        "z": "a1e4e922bcf147a4",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 340,
-        "y": 580,
-        "wires": []
     },
     {
         "id": "880bb394151fe87b",
@@ -536,7 +364,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 140,
-        "y": 620,
+        "y": 740,
         "wires": [
             [
                 "e88f23c43fb3cb2d"
@@ -549,8 +377,8 @@
         "z": "a1e4e922bcf147a4",
         "name": "Go to SignIn",
         "events": "all",
-        "x": 310,
-        "y": 620,
+        "x": 330,
+        "y": 740,
         "wires": [
             []
         ]
@@ -612,7 +440,7 @@
         "templateScope": "local",
         "className": "",
         "x": 140,
-        "y": 780,
+        "y": 900,
         "wires": [
             []
         ]
@@ -624,8 +452,182 @@
         "name": "Tab about us",
         "info": "",
         "x": 150,
-        "y": 740,
+        "y": 860,
         "wires": []
+    },
+    {
+        "id": "3f1756f15584103b",
+        "type": "Firestore out",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "collection": "Users",
+        "document": "",
+        "operation": "add",
+        "admin": "ac1a9d03896c3410",
+        "eject": false,
+        "x": 310,
+        "y": 540,
+        "wires": [
+            [
+                "f7bd0a51f806352a",
+                "328bf5a5a9b180c8"
+            ]
+        ]
+    },
+    {
+        "id": "f7bd0a51f806352a",
+        "type": "debug",
+        "z": "a1e4e922bcf147a4",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "0c32787061a85188",
+        "type": "ui_toast",
+        "z": "a1e4e922bcf147a4",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Register success",
+        "x": 790,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "328bf5a5a9b180c8",
+        "type": "change",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Sign up successfully. Please sign in!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 540,
+        "wires": [
+            [
+                "0c32787061a85188"
+            ]
+        ]
+    },
+    {
+        "id": "696d1bd339eaf41d",
+        "type": "Firestore in",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "collection": "Users",
+        "group": false,
+        "document": "",
+        "realtime": false,
+        "query": [
+            {
+                "where": {
+                    "field": "username",
+                    "operation": "==",
+                    "value": "{{payload.username}}"
+                }
+            },
+            {
+                "where": {
+                    "field": "password",
+                    "operation": "==",
+                    "value": "{{payload.password}}"
+                }
+            }
+        ],
+        "admin": "ac1a9d03896c3410",
+        "snapHandler": "",
+        "eject": false,
+        "x": 530,
+        "y": 240,
+        "wires": [
+            [
+                "971772e5099e9a70",
+                "0da73507a3bee224"
+            ]
+        ]
+    },
+    {
+        "id": "971772e5099e9a70",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "function 2",
+        "func": "let data = msg.payload;\ndata = JSON.stringify(data);\nif(data === undefined || data === \"{}\"){\n    msg.payload = 0;\n}\nelse{\n    msg.payload = 1;\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 280,
+        "wires": [
+            [
+                "1c60a6be8ce783b4"
+            ]
+        ]
+    },
+    {
+        "id": "0da73507a3bee224",
+        "type": "debug",
+        "z": "a1e4e922bcf147a4",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2a155f07549cf735",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "function 4",
+        "func": "msg.firestore = {\n    query: [\n        { where: [\"username\", \"==\", msg.payload.username] },\n        { where: [\"password\", \"==\", msg.payload.password] }\n    ]\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "696d1bd339eaf41d"
+            ]
+        ]
     },
     {
         "id": "95f13ee682ea304b",
@@ -659,6 +661,11 @@
         "width": "20",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "ac1a9d03896c3410",
+        "type": "firebase admin",
+        "name": ""
     },
     {
         "id": "e45692bb3249486c",
