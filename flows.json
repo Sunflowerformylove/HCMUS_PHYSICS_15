@@ -8,6 +8,201 @@
         "env": []
     },
     {
+        "id": "5f0d21fc59782555",
+        "type": "global-config",
+        "name": "global-config",
+        "env": [
+            {
+                "name": "multiplayer",
+                "value": "true",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "id": "95f13ee682ea304b",
+        "type": "ui_group",
+        "name": "SignIn",
+        "tab": "e45692bb3249486c",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "523c0f67870ab58f",
+        "type": "ui_group",
+        "name": "SignUp",
+        "tab": "e45692bb3249486c",
+        "order": 3,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "412e7029b72dd724",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "ffc5cccd0966e57a",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e45692bb3249486c",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ffc5cccd0966e57a",
+        "type": "ui_tab",
+        "name": "About us",
+        "icon": "",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0b6763c30612f66e",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "ac1a9d03896c3410",
+        "type": "firebase admin",
+        "name": ""
+    },
+    {
+        "id": "8e15599bbf75e108",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "90",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "990e756ac06b7596",
         "type": "inject",
         "z": "a1e4e922bcf147a4",
@@ -318,7 +513,7 @@
         "y": 540,
         "wires": [
             [
-                "3f1756f15584103b"
+                "aea91ff72f87021e"
             ]
         ]
     },
@@ -465,7 +660,7 @@
         "operation": "add",
         "admin": "ac1a9d03896c3410",
         "eject": false,
-        "x": 310,
+        "x": 1110,
         "y": 540,
         "wires": [
             [
@@ -486,8 +681,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
-        "y": 480,
+        "x": 1420,
+        "y": 520,
         "wires": []
     },
     {
@@ -505,8 +700,8 @@
         "className": "",
         "topic": "",
         "name": "Register success",
-        "x": 790,
-        "y": 540,
+        "x": 1710,
+        "y": 580,
         "wires": []
     },
     {
@@ -528,8 +723,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
-        "y": 540,
+        "x": 1440,
+        "y": 580,
         "wires": [
             [
                 "0c32787061a85188"
@@ -545,22 +740,7 @@
         "group": false,
         "document": "",
         "realtime": false,
-        "query": [
-            {
-                "where": {
-                    "field": "username",
-                    "operation": "==",
-                    "value": "{{payload.username}}"
-                }
-            },
-            {
-                "where": {
-                    "field": "password",
-                    "operation": "==",
-                    "value": "{{payload.password}}"
-                }
-            }
-        ],
+        "query": [],
         "admin": "ac1a9d03896c3410",
         "snapHandler": "",
         "eject": false,
@@ -630,59 +810,114 @@
         ]
     },
     {
-        "id": "95f13ee682ea304b",
-        "type": "ui_group",
-        "name": "SignIn",
-        "tab": "e45692bb3249486c",
-        "order": 1,
-        "disp": false,
-        "width": "6",
-        "collapse": false,
-        "className": ""
+        "id": "1112097410156052",
+        "type": "Firestore in",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "collection": "Users",
+        "group": false,
+        "document": "",
+        "realtime": false,
+        "query": [],
+        "admin": "ac1a9d03896c3410",
+        "snapHandler": "",
+        "eject": false,
+        "x": 530,
+        "y": 540,
+        "wires": [
+            [
+                "b22fe9a706ff246a"
+            ]
+        ]
     },
     {
-        "id": "523c0f67870ab58f",
-        "type": "ui_group",
-        "name": "SignUp",
-        "tab": "e45692bb3249486c",
-        "order": 3,
-        "disp": false,
-        "width": "6",
-        "collapse": false,
-        "className": ""
+        "id": "aea91ff72f87021e",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "function 5",
+        "func": "msg.firestore = {\n    query: [\n        { where: [\"username\", \"==\", msg.payload.username] },\n    ]\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 540,
+        "wires": [
+            [
+                "1112097410156052"
+            ]
+        ]
     },
     {
-        "id": "412e7029b72dd724",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "ffc5cccd0966e57a",
-        "order": 1,
-        "disp": false,
-        "width": "20",
-        "collapse": false,
-        "className": ""
+        "id": "b22fe9a706ff246a",
+        "type": "switch",
+        "z": "a1e4e922bcf147a4",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 540,
+        "wires": [
+            [
+                "140a4bbced46175c"
+            ],
+            [
+                "3f1756f15584103b"
+            ]
+        ]
     },
     {
-        "id": "ac1a9d03896c3410",
-        "type": "firebase admin",
-        "name": ""
+        "id": "8fc6db0f7ce97a54",
+        "type": "ui_toast",
+        "z": "a1e4e922bcf147a4",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Register failed",
+        "x": 1400,
+        "y": 440,
+        "wires": [
+            []
+        ]
     },
     {
-        "id": "e45692bb3249486c",
-        "type": "ui_tab",
-        "name": "Dashboard",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "ffc5cccd0966e57a",
-        "type": "ui_tab",
-        "name": "About us",
-        "icon": "",
-        "order": 6,
-        "disabled": false,
-        "hidden": false
+        "id": "140a4bbced46175c",
+        "type": "function",
+        "z": "a1e4e922bcf147a4",
+        "name": "function 6",
+        "func": "msg.payload = \"Username exists\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 460,
+        "wires": [
+            [
+                "8fc6db0f7ce97a54"
+            ]
+        ]
     }
 ]
